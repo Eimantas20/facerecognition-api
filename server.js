@@ -13,7 +13,8 @@ import { handleImage, handleApiCall } from './controllers/image.js';
 const db = knex({
     client: 'pg',
     connection: {
-        host: 'postgresql-globular-77331',
+        host: 'process.env.DATABASE_URL',
+        ssl: true
     }
 });
 
