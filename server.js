@@ -2,6 +2,7 @@ import express, { response } from 'express';
 import bcrypt from 'bcrypt-nodejs';
 import cors from 'cors';
 import knex from 'knex';
+import pg, { client } from 'pg';
 import handleRegister from './controllers/register.js';
 import handleSignin from './controllers/signin.js';
 import handleProfileGet from './controllers/profile.js';
@@ -10,17 +11,13 @@ import handleProfileGet from './controllers/profile.js';
 // const image = require('./controllers/image.js');
 import { handleImage, handleApiCall } from './controllers/image.js';
 
-const db = knex({
-    client: 'pg',
-    connection: {
-        connectionString: process.env.DATABASE_URL,
-        ssl: {
-           rejectUnauthorized: false 
-        }
-    }
-});
 
-db.connect();
+const db =  new Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+        rejectUnauthorized: false 
+     }
+});
 
 const app = express();
 
