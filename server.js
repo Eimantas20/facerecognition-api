@@ -26,7 +26,7 @@ app.use(express.json());
 app.use(cors());
 
 //Everything with app.get.post.out are our routes
-app.get('/', (req, res) => { res.send(database.users); });
+app.get('/', (req, res) => { res.send('it is working mate'); });
 
 app.post('/signin', (req, res) => { handleSignin(req, res, db, bcrypt) });
 
